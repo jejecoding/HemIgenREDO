@@ -7,5 +7,9 @@ namespace HemIgenREDO
 {
     public enum EnumDifficulty
     {
+        Easy,
+        Medium,
+        Hard,
+        Hardcore
     }
 }
