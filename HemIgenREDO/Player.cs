@@ -7,10 +7,10 @@ namespace HemIgenREDO
 {
     public class Player
     {
-        private string name;
-        private int health;
-        private int steps;
-        private int water;
+        string name;
+        int health;
+        int steps;
+        int water;
         int damage = 5;
         int thirst = 5;
 

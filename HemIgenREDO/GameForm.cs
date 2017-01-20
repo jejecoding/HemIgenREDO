@@ -12,9 +12,20 @@ namespace HemIgenREDO
 {
     public partial class GameForm : Form
     {
+        DateTime start;
+
+        Player player = new Player();
+
         public GameForm()
         {
             InitializeComponent();
+        }
+
+        private void NewGame()
+        {
+            player.Health = 100;
+            player.Thirst = 100;
+            player.Steps = 0;
         }
     }
 }
