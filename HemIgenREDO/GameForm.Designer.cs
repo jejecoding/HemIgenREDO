@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnExitGame = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnMainMenu = new System.Windows.Forms.Button();
             this.btnHand = new System.Windows.Forms.Button();
             this.btnMagnifier = new System.Windows.Forms.Button();
             this.lblDesc = new System.Windows.Forms.Label();
@@ -46,9 +46,11 @@
             this.lblHealth = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblInventory = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tmrPlaytime = new System.Windows.Forms.Timer(this.components);
+            this.btnWaterTest = new System.Windows.Forms.Button();
+            this.btnHealthTest = new System.Windows.Forms.Button();
             this.tlpMap.SuspendLayout();
             this.panelMap.SuspendLayout();
             this.tlpStats.SuspendLayout();
@@ -56,21 +58,25 @@
             // 
             // btnExitGame
             // 
+            this.btnExitGame.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExitGame.Location = new System.Drawing.Point(680, 387);
             this.btnExitGame.Name = "btnExitGame";
             this.btnExitGame.Size = new System.Drawing.Size(92, 70);
             this.btnExitGame.TabIndex = 8;
             this.btnExitGame.Text = "Exit Game";
             this.btnExitGame.UseVisualStyleBackColor = true;
+            this.btnExitGame.Click += new System.EventHandler(this.btnExitGame_Click);
             // 
-            // btnClose
+            // btnMainMenu
             // 
-            this.btnClose.Location = new System.Drawing.Point(680, 486);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(92, 63);
-            this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "Main Menu";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnMainMenu.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnMainMenu.Location = new System.Drawing.Point(680, 486);
+            this.btnMainMenu.Name = "btnMainMenu";
+            this.btnMainMenu.Size = new System.Drawing.Size(92, 63);
+            this.btnMainMenu.TabIndex = 9;
+            this.btnMainMenu.Text = "Main Menu";
+            this.btnMainMenu.UseVisualStyleBackColor = true;
+            this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
             // 
             // btnHand
             // 
@@ -113,7 +119,9 @@
             this.tlpMap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tlpMap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tlpMap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlpMap.Controls.Add(this.btnWaterTest, 0, 8);
             this.tlpMap.Controls.Add(this.btnStepTest, 4, 4);
+            this.tlpMap.Controls.Add(this.btnHealthTest, 8, 0);
             this.tlpMap.Location = new System.Drawing.Point(0, 0);
             this.tlpMap.Margin = new System.Windows.Forms.Padding(0);
             this.tlpMap.Name = "tlpMap";
@@ -137,8 +145,9 @@
             this.btnStepTest.Name = "btnStepTest";
             this.btnStepTest.Size = new System.Drawing.Size(28, 28);
             this.btnStepTest.TabIndex = 0;
-            this.btnStepTest.Text = "X";
+            this.btnStepTest.Text = "S";
             this.btnStepTest.UseVisualStyleBackColor = true;
+            this.btnStepTest.Click += new System.EventHandler(this.btnStepTest_Click);
             // 
             // panelMap
             // 
@@ -210,6 +219,7 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(394, 27);
             this.lblTime.TabIndex = 3;
+            this.lblTime.Text = "Time";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSteps
@@ -220,6 +230,7 @@
             this.lblSteps.Name = "lblSteps";
             this.lblSteps.Size = new System.Drawing.Size(394, 27);
             this.lblSteps.TabIndex = 2;
+            this.lblSteps.Text = "Steps";
             this.lblSteps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblWater
@@ -230,6 +241,7 @@
             this.lblWater.Name = "lblWater";
             this.lblWater.Size = new System.Drawing.Size(394, 27);
             this.lblWater.TabIndex = 1;
+            this.lblWater.Text = "Water";
             this.lblWater.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblHealth
@@ -240,6 +252,7 @@
             this.lblHealth.Name = "lblHealth";
             this.lblHealth.Size = new System.Drawing.Size(394, 27);
             this.lblHealth.TabIndex = 0;
+            this.lblHealth.Text = "Health";
             this.lblHealth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -260,14 +273,14 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Map";
             // 
-            // label3
+            // lblInventory
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(365, 189);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Inventory";
+            this.lblInventory.AutoSize = true;
+            this.lblInventory.Location = new System.Drawing.Point(365, 189);
+            this.lblInventory.Name = "lblInventory";
+            this.lblInventory.Size = new System.Drawing.Size(51, 13);
+            this.lblInventory.TabIndex = 19;
+            this.lblInventory.Text = "Inventory";
             // 
             // label4
             // 
@@ -278,13 +291,40 @@
             this.label4.TabIndex = 20;
             this.label4.Text = "Description";
             // 
+            // tmrPlaytime
+            // 
+            this.tmrPlaytime.Interval = 1000;
+            this.tmrPlaytime.Tick += new System.EventHandler(this.tmrPlaytime_Tick);
+            // 
+            // btnWaterTest
+            // 
+            this.btnWaterTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnWaterTest.Location = new System.Drawing.Point(5, 293);
+            this.btnWaterTest.Name = "btnWaterTest";
+            this.btnWaterTest.Size = new System.Drawing.Size(28, 28);
+            this.btnWaterTest.TabIndex = 1;
+            this.btnWaterTest.Text = "W";
+            this.btnWaterTest.UseVisualStyleBackColor = true;
+            this.btnWaterTest.Click += new System.EventHandler(this.btnWaterTest_Click);
+            // 
+            // btnHealthTest
+            // 
+            this.btnHealthTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHealthTest.Location = new System.Drawing.Point(293, 5);
+            this.btnHealthTest.Name = "btnHealthTest";
+            this.btnHealthTest.Size = new System.Drawing.Size(28, 28);
+            this.btnHealthTest.TabIndex = 2;
+            this.btnHealthTest.Text = "H";
+            this.btnHealthTest.UseVisualStyleBackColor = true;
+            this.btnHealthTest.Click += new System.EventHandler(this.btnHealthTest_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblInventory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tlpStats);
@@ -293,11 +333,13 @@
             this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.btnMagnifier);
             this.Controls.Add(this.btnHand);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnMainMenu);
             this.Controls.Add(this.btnExitGame);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hem Igen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameForm_FormClosing);
             this.tlpMap.ResumeLayout(false);
             this.panelMap.ResumeLayout(false);
             this.tlpStats.ResumeLayout(false);
@@ -310,7 +352,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnExitGame;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnMainMenu;
         private System.Windows.Forms.Button btnHand;
         private System.Windows.Forms.Button btnMagnifier;
         private System.Windows.Forms.Label lblDesc;
@@ -326,8 +368,10 @@
         private System.Windows.Forms.Label lblHealth;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblInventory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer tmrPlaytime;
+        private System.Windows.Forms.Button btnWaterTest;
+        private System.Windows.Forms.Button btnHealthTest;
     }
 }

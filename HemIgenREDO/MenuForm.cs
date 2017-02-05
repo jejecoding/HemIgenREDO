@@ -12,8 +12,7 @@ namespace HemIgenREDO
 {
     public partial class MenuForm : Form
     {
-        EnumDifficulty difficulty = new EnumDifficulty();
-        GameForm game = new GameForm();
+        GameForm game;
 
         public MenuForm()
         {
@@ -24,12 +23,12 @@ namespace HemIgenREDO
         private void InitializeGUI()
         {
             pnlDifficulty.Visible = false;
-            game.Visible = false;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             pnlDifficulty.Visible = true;
+            btnHardcore.Select();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -40,35 +39,47 @@ namespace HemIgenREDO
 
         private void btnEasy_Click(object sender, EventArgs e)
         {
-            game.Visible = true;
-            difficulty = EnumDifficulty.Easy;
-            this.Visible = false;
+            HideMenu();
+            StartGame(EnumDifficulty.Easy);
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
         {
-            game.Visible = true;
-            difficulty = EnumDifficulty.Medium;
-            this.Visible = false;
+            HideMenu();
+            StartGame(EnumDifficulty.Medium);
         }
 
         private void btnHard_Click(object sender, EventArgs e)
         {
-            game.Visible = true;
-            difficulty = EnumDifficulty.Hard;
-            this.Visible = false;
+            HideMenu();
+            StartGame(EnumDifficulty.Hard);
         }
 
         private void btnHardcore_Click(object sender, EventArgs e)
         {
-            game.Visible = true;
-            difficulty = EnumDifficulty.Hardcore;
-            this.Visible = false;
+            HideMenu();
+            StartGame(EnumDifficulty.Hardcore);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             pnlDifficulty.Visible = false;
+        }
+
+        private void StartGame(EnumDifficulty d)
+        {
+            game = new GameForm(d);
+
+            if (game.ShowDialog() == DialogResult.OK)
+                this.Visible = true;
+            else
+                Application.Exit();
+        }
+
+        private void HideMenu()
+        {
+            this.pnlDifficulty.Visible = false;
+            this.Visible = false;
         }
     }
 }
