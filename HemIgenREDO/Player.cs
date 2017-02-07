@@ -7,12 +7,14 @@ namespace HemIgenREDO
 {
     public class Player
     {
-        private string name;
-        private int health;
-        private int steps;
-        private int water;
-        int damage = 5;
-        int thirst = 5;
+        string name;
+        int health;
+        int steps;
+        int water;
+        int damage;
+        int thirst;
+        int healing;
+        int hydration;
 
         public string Name
         {
@@ -34,7 +36,7 @@ namespace HemIgenREDO
         public int Water
         {
             set { water = value; }
-            get { return Water; }
+            get { return water; }
         }
 
         public int Thirst
@@ -49,16 +51,42 @@ namespace HemIgenREDO
             get { return damage; }
         }
 
+        public int Healing
+        {
+            set { healing = value; }
+            get { return healing; }
+        }
+
+        public int Hydration
+        {
+            set { hydration = value; }
+            get { return hydration; }
+        }
+
         public int DamageTaken()
         {
             health = health - Damage;
             return health;
         }
+
         public int ThirstTaken()
         {
             water = water - Thirst;
             return water;
         }
+
+        public int Hydrate()
+        {
+            water = water + hydration;
+            return water;
+        }
+
+        public int Heal()
+        {
+            health = health + healing;
+            return health;
+        }
+
         public int StepTaken()
         {
             return ++steps;

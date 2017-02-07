@@ -30,13 +30,13 @@
         {
             this.pnlMainMenu = new System.Windows.Forms.Panel();
             this.pnlDifficulty = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.btnHardcore = new System.Windows.Forms.Button();
             this.btnHard = new System.Windows.Forms.Button();
             this.btnNormal = new System.Windows.Forms.Button();
             this.btnEasy = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.pnlMainMenu.SuspendLayout();
             this.pnlDifficulty.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,16 @@
             this.pnlDifficulty.Name = "pnlDifficulty";
             this.pnlDifficulty.Size = new System.Drawing.Size(384, 361);
             this.pnlDifficulty.TabIndex = 2;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(272, 300);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(100, 49);
+            this.btnBack.TabIndex = 4;
+            this.btnBack.Text = "Back to menu";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnHardcore
             // 
@@ -135,16 +145,6 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(272, 300);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 49);
-            this.btnBack.TabIndex = 4;
-            this.btnBack.Text = "Back to menu";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +152,7 @@
             this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.pnlMainMenu);
             this.Name = "MenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hem Igen Huvudmeny";
             this.pnlMainMenu.ResumeLayout(false);
             this.pnlDifficulty.ResumeLayout(false);
