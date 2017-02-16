@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace HemIgenREDO
 {
     public class Player
     {
         string name;
+
         int health;
         int steps;
         int water;
@@ -15,6 +17,9 @@ namespace HemIgenREDO
         int thirst;
         int healing;
         int hydration;
+
+
+        public Map gameMap = new Map();
 
         public string Name
         {
@@ -90,6 +95,13 @@ namespace HemIgenREDO
         public int StepTaken()
         {
             return ++steps;
+        }
+
+        public void SpecifyMap(TableLayoutPanel container,Control initialControl)
+        {
+            gameMap.LastControl = initialControl;
+            gameMap.PlayerPosX = container.GetCellPosition(initialControl).Column;
+            gameMap.PlayerPosY = container.GetCellPosition(initialControl).Row;
         }
     }
 }

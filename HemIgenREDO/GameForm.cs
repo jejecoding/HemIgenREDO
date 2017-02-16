@@ -17,30 +17,32 @@ namespace HemIgenREDO
         EnumDifficulty difficulty;
         Player player = new Player();
 
+        Control initialControl;
+
         public GameForm(EnumDifficulty difficultyFromMenuForm)
         {
             InitializeComponent();
             difficulty = difficultyFromMenuForm;
-            NewGame();
+            
             InitializeGUI();
         }
 
         private void InitializeGUI()
         {
+            NewGame();
+
             tmrPlaytime.Start();
             lblHealth.Text = String.Format("Health: {0}", player.Health);
             lblWater.Text = String.Format("Water: {0}", player.Water);
             lblSteps.Text = String.Format("Steps: {0}", player.Steps);
             lblTime.Text = "Time played: 00:00";
             HideUnused();
+
+            player.SpecifyMap(tlpMap, initialControl);
         }
 
         private void NewGame()
         {
-            btnStepTest.Select();
-            player.Health = 100;
-            player.Water = 100;
-            player.Steps = 0;
             switch (difficulty)
             {
                 case EnumDifficulty.Easy:
@@ -50,6 +52,7 @@ namespace HemIgenREDO
                         player.Thirst = 1;
                         player.Healing = 1;
                         player.Hydration = 1;
+                        initialControl = btnStepTest;
                         break;
                     }
                 case EnumDifficulty.Medium:
@@ -59,6 +62,7 @@ namespace HemIgenREDO
                         player.Thirst = 2;
                         player.Healing = 2;
                         player.Hydration = 2;
+                        initialControl = btnHealthTest;
                         break;
                     }
                 case EnumDifficulty.Hard:
@@ -68,6 +72,7 @@ namespace HemIgenREDO
                         player.Thirst = 5;
                         player.Healing = 5;
                         player.Hydration = 5;
+                        initialControl = btnWaterTest;
                         break;
                     }
                 case EnumDifficulty.Hardcore:
@@ -77,9 +82,14 @@ namespace HemIgenREDO
                         player.Thirst = 10;
                         player.Healing = 10;
                         player.Hydration = 10;
+                        initialControl = pbTestOne;
                         break;
                     }
             }
+            player.Health = 100;
+            player.Water = 100;
+            player.Steps = 0;
+            initialControl.Select();
         }
 
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -106,22 +116,24 @@ namespace HemIgenREDO
 
         private void btnStepTest_Click(object sender, EventArgs e)
         {
-            if (player.Water != 0)
-                lblWater.Text = String.Format("Water: {0}", player.ThirstTaken());
-            else
-                lblHealth.Text = String.Format("Health: {0}", player.DamageTaken());
+            //if (player.Water != 0)
+            //    lblWater.Text = String.Format("Water: {0}", player.ThirstTaken());
+            //else
+            //    lblHealth.Text = String.Format("Health: {0}", player.DamageTaken());
 
-            lblSteps.Text = String.Format("Steps: {0}", player.StepTaken());
+            //lblSteps.Text = String.Format("Steps: {0}", player.StepTaken());
 
-            if (player.Health == 0)
-            {
-                tmrPlaytime.Stop();
-                this.Text = "GAME OVER";
-                lblDesc.Text = "GAME OVER";
-                btnStepTest.Enabled = false;
-                btnHealthTest.Enabled = false;
-                btnWaterTest.Enabled = false;
-            }
+            player.gameMap.MovePlayer(tlpMap, btnStepTest);
+
+            //if (player.Health == 0)
+            //{
+            //    tmrPlaytime.Stop();
+            //    this.Text = "GAME OVER";
+            //    lblDesc.Text = "GAME OVER";
+            //    btnStepTest.Enabled = false;
+            //    btnHealthTest.Enabled = false;
+            //    btnWaterTest.Enabled = false;
+            //}
         }
 
         private void tmrPlaytime_Tick(object sender, EventArgs e)
@@ -137,14 +149,18 @@ namespace HemIgenREDO
 
         private void btnHealthTest_Click(object sender, EventArgs e)
         {
-            if (player.Health < 100)
-                lblHealth.Text = String.Format("Health: {0}", player.Heal());
+            //if (player.Health < 100)
+            //    lblHealth.Text = String.Format("Health: {0}", player.Heal());
+
+            player.gameMap.MovePlayer(tlpMap,btnHealthTest);
+            
         }
 
         private void btnWaterTest_Click(object sender, EventArgs e)
         {
-            if (player.Water < 100)
-                lblWater.Text = String.Format("Water: {0}", player.Hydrate());
+            //if (player.Water < 100)
+            //    lblWater.Text = String.Format("Water: {0}", player.Hydrate());
+            player.gameMap.MovePlayer(tlpMap, btnWaterTest);
         }
 
         private void HideUnused()
@@ -153,6 +169,16 @@ namespace HemIgenREDO
             tlpInventory.Hide();
             btnHand.Hide();
             btnMagnifier.Hide();
+        }
+
+        private void pbTestOne_Click(object sender, EventArgs e)
+        {
+            player.gameMap.MovePlayer(tlpMap, pbTestOne);
+        }
+
+        private void pbTestTwo_Click(object sender, EventArgs e)
+        {
+            player.gameMap.MovePlayer(tlpMap, pbTestTwo);
         }
     }
 }
