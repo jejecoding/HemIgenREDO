@@ -99,9 +99,10 @@ namespace HemIgenREDO
 
         public void SpecifyMap(TableLayoutPanel container,Control initialControl)
         {
-            gameMap.LastControl = initialControl;
-            gameMap.PlayerPosX = container.GetCellPosition(initialControl).Column;
-            gameMap.PlayerPosY = container.GetCellPosition(initialControl).Row;
+
+            gameMap.LastControl = container.Controls[0];
+            gameMap.PlayerPosX = container.GetCellPosition(gameMap.LastControl).Column;
+            gameMap.PlayerPosY = container.GetCellPosition(gameMap.LastControl).Row;
         }
     }
 }

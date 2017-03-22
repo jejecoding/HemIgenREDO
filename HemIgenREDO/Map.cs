@@ -29,6 +29,32 @@ namespace HemIgenREDO
             set { lastControl = value; }
         }
 
+        public void PlaceControls(TableLayoutPanel parentTLP)
+        {
+            for (int r = 0; r < parentTLP.RowCount; r++)
+            {
+                for (int c = 0; c < parentTLP.ColumnCount; c++)
+                {
+                    //for (int i = 0; i < parentTLP.ColumnCount * parentTLP.RowCount; i++)
+                    //{
+                        PictureBox pb = new PictureBox();
+                        pb.Click += Pb_Click;
+                        pb.Dock = DockStyle.Fill;
+                        pb.Margin = Padding.Empty;
+                        //pb.Text = i.ToString();
+                        parentTLP.Controls.Add(pb, c, r);
+                    //}
+                }
+            }
+        }
+
+        private void Pb_Click(object sender, System.EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            TableLayoutPanel parentTLP = (TableLayoutPanel)pb.Parent;
+            MovePlayer(parentTLP, pb);
+        }
+
         /// <summary>
         /// if player can move, will move; else shows error message
         /// </summary>

@@ -17,7 +17,7 @@ namespace HemIgenREDO
         EnumDifficulty difficulty;
         Player player = new Player();
 
-        Control initialControl;
+        //Control initialControl;
 
         public GameForm(EnumDifficulty difficultyFromMenuForm)
         {
@@ -38,7 +38,12 @@ namespace HemIgenREDO
             lblTime.Text = "Time played: 00:00";
             HideUnused();
 
-            player.SpecifyMap(tlpMap, initialControl);
+            
+//tlpMap.Controls
+            //initialControl = tlpMap.Controls[0];
+            player.SpecifyMap(tlpMap, tlpMap.Controls[0]);
+            player.gameMap.LastControl = tlpMap.Controls[0];
+//            tlpMap.Controls[0].BackColor = SystemColors.Highlight;            
         }
 
         private void NewGame()
@@ -52,7 +57,7 @@ namespace HemIgenREDO
                         player.Thirst = 1;
                         player.Healing = 1;
                         player.Hydration = 1;
-                        initialControl = btnStepTest;
+                        //initialControl = btnStepTest;
                         break;
                     }
                 case EnumDifficulty.Medium:
@@ -62,7 +67,7 @@ namespace HemIgenREDO
                         player.Thirst = 2;
                         player.Healing = 2;
                         player.Hydration = 2;
-                        initialControl = btnHealthTest;
+                        //initialControl = btnStepTest;
                         break;
                     }
                 case EnumDifficulty.Hard:
@@ -72,7 +77,7 @@ namespace HemIgenREDO
                         player.Thirst = 5;
                         player.Healing = 5;
                         player.Hydration = 5;
-                        initialControl = btnWaterTest;
+                       // initialControl = btnWaterTest;
                         break;
                     }
                 case EnumDifficulty.Hardcore:
@@ -82,14 +87,16 @@ namespace HemIgenREDO
                         player.Thirst = 10;
                         player.Healing = 10;
                         player.Hydration = 10;
-                        initialControl = pbTestOne;
+                       // initialControl = pbTestOne;
                         break;
                     }
             }
             player.Health = 100;
             player.Water = 100;
             player.Steps = 0;
-            initialControl.Select();
+            player.gameMap.PlaceControls(tlpMap);
+            tlpMap.Controls[0].BackColor= SystemColors.Highlight;
+            
         }
 
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -123,7 +130,7 @@ namespace HemIgenREDO
 
             //lblSteps.Text = String.Format("Steps: {0}", player.StepTaken());
 
-            player.gameMap.MovePlayer(tlpMap, btnStepTest);
+            //player.gameMap.MovePlayer(tlpMap, btnStepTest);
 
             //if (player.Health == 0)
             //{
@@ -152,7 +159,7 @@ namespace HemIgenREDO
             //if (player.Health < 100)
             //    lblHealth.Text = String.Format("Health: {0}", player.Heal());
 
-            player.gameMap.MovePlayer(tlpMap,btnHealthTest);
+            //player.gameMap.MovePlayer(tlpMap,btnHealthTest);
             
         }
 
@@ -160,7 +167,7 @@ namespace HemIgenREDO
         {
             //if (player.Water < 100)
             //    lblWater.Text = String.Format("Water: {0}", player.Hydrate());
-            player.gameMap.MovePlayer(tlpMap, btnWaterTest);
+            //player.gameMap.MovePlayer(tlpMap, btnWaterTest);
         }
 
         private void HideUnused()
@@ -173,12 +180,12 @@ namespace HemIgenREDO
 
         private void pbTestOne_Click(object sender, EventArgs e)
         {
-            player.gameMap.MovePlayer(tlpMap, pbTestOne);
+            //player.gameMap.MovePlayer(tlpMap, pbTestOne);
         }
 
         private void pbTestTwo_Click(object sender, EventArgs e)
         {
-            player.gameMap.MovePlayer(tlpMap, pbTestTwo);
+            //player.gameMap.MovePlayer(tlpMap, pbTestTwo);
         }
     }
 }

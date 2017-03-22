@@ -35,11 +35,6 @@
             this.btnMagnifier = new System.Windows.Forms.Button();
             this.lblDesc = new System.Windows.Forms.Label();
             this.tlpMap = new System.Windows.Forms.TableLayoutPanel();
-            this.btnStepTest = new System.Windows.Forms.Button();
-            this.btnHealthTest = new System.Windows.Forms.Button();
-            this.pbTestOne = new System.Windows.Forms.PictureBox();
-            this.btnWaterTest = new System.Windows.Forms.Button();
-            this.pbTestTwo = new System.Windows.Forms.PictureBox();
             this.panelMap = new System.Windows.Forms.Panel();
             this.tlpInventory = new System.Windows.Forms.TableLayoutPanel();
             this.tlpStats = new System.Windows.Forms.TableLayoutPanel();
@@ -54,9 +49,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tmrPlaytime = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.tlpMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTestOne)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTestTwo)).BeginInit();
             this.panelMap.SuspendLayout();
             this.tlpStats.SuspendLayout();
             this.SuspendLayout();
@@ -127,11 +119,6 @@
             this.tlpMap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tlpMap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tlpMap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpMap.Controls.Add(this.btnStepTest, 4, 4);
-            this.tlpMap.Controls.Add(this.btnHealthTest, 5, 4);
-            this.tlpMap.Controls.Add(this.pbTestOne, 4, 3);
-            this.tlpMap.Controls.Add(this.btnWaterTest, 3, 4);
-            this.tlpMap.Controls.Add(this.pbTestTwo, 4, 5);
             this.tlpMap.Location = new System.Drawing.Point(0, 0);
             this.tlpMap.Margin = new System.Windows.Forms.Padding(0);
             this.tlpMap.Name = "tlpMap";
@@ -148,63 +135,6 @@
             this.tlpMap.Size = new System.Drawing.Size(326, 326);
             this.tlpMap.TabIndex = 13;
             this.toolTip1.SetToolTip(this.tlpMap, "Map of Game World");
-            // 
-            // btnStepTest
-            // 
-            this.btnStepTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStepTest.Location = new System.Drawing.Point(149, 149);
-            this.btnStepTest.Name = "btnStepTest";
-            this.btnStepTest.Size = new System.Drawing.Size(28, 28);
-            this.btnStepTest.TabIndex = 0;
-            this.btnStepTest.Text = "S";
-            this.btnStepTest.UseVisualStyleBackColor = true;
-            this.btnStepTest.Click += new System.EventHandler(this.btnStepTest_Click);
-            // 
-            // btnHealthTest
-            // 
-            this.btnHealthTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHealthTest.Location = new System.Drawing.Point(185, 149);
-            this.btnHealthTest.Name = "btnHealthTest";
-            this.btnHealthTest.Size = new System.Drawing.Size(28, 28);
-            this.btnHealthTest.TabIndex = 2;
-            this.btnHealthTest.Text = "H";
-            this.btnHealthTest.UseVisualStyleBackColor = true;
-            this.btnHealthTest.Click += new System.EventHandler(this.btnHealthTest_Click);
-            // 
-            // pbTestOne
-            // 
-            this.pbTestOne.BackColor = System.Drawing.SystemColors.Control;
-            this.pbTestOne.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbTestOne.Location = new System.Drawing.Point(146, 110);
-            this.pbTestOne.Margin = new System.Windows.Forms.Padding(0);
-            this.pbTestOne.Name = "pbTestOne";
-            this.pbTestOne.Size = new System.Drawing.Size(34, 34);
-            this.pbTestOne.TabIndex = 0;
-            this.pbTestOne.TabStop = false;
-            this.pbTestOne.Click += new System.EventHandler(this.pbTestOne_Click);
-            // 
-            // btnWaterTest
-            // 
-            this.btnWaterTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWaterTest.Location = new System.Drawing.Point(113, 149);
-            this.btnWaterTest.Name = "btnWaterTest";
-            this.btnWaterTest.Size = new System.Drawing.Size(28, 28);
-            this.btnWaterTest.TabIndex = 1;
-            this.btnWaterTest.Text = "W";
-            this.btnWaterTest.UseVisualStyleBackColor = true;
-            this.btnWaterTest.Click += new System.EventHandler(this.btnWaterTest_Click);
-            // 
-            // pbTestTwo
-            // 
-            this.pbTestTwo.BackColor = System.Drawing.SystemColors.Control;
-            this.pbTestTwo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbTestTwo.Location = new System.Drawing.Point(146, 182);
-            this.pbTestTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.pbTestTwo.Name = "pbTestTwo";
-            this.pbTestTwo.Size = new System.Drawing.Size(34, 34);
-            this.pbTestTwo.TabIndex = 3;
-            this.pbTestTwo.TabStop = false;
-            this.pbTestTwo.Click += new System.EventHandler(this.pbTestTwo_Click);
             // 
             // panelMap
             // 
@@ -380,9 +310,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hem Igen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameForm_FormClosing);
-            this.tlpMap.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbTestOne)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTestTwo)).EndInit();
             this.panelMap.ResumeLayout(false);
             this.tlpStats.ResumeLayout(false);
             this.tlpStats.PerformLayout();
@@ -399,7 +326,6 @@
         private System.Windows.Forms.Button btnMagnifier;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.TableLayoutPanel tlpMap;
-        private System.Windows.Forms.Button btnStepTest;
         private System.Windows.Forms.Panel panelMap;
         private System.Windows.Forms.TableLayoutPanel tlpInventory;
         private System.Windows.Forms.TableLayoutPanel tlpStats;
@@ -413,10 +339,6 @@
         private System.Windows.Forms.Label lblInventory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer tmrPlaytime;
-        private System.Windows.Forms.Button btnWaterTest;
-        private System.Windows.Forms.Button btnHealthTest;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.PictureBox pbTestOne;
-        private System.Windows.Forms.PictureBox pbTestTwo;
     }
 }
