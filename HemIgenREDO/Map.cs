@@ -35,15 +35,11 @@ namespace HemIgenREDO
             {
                 for (int c = 0; c < parentTLP.ColumnCount; c++)
                 {
-                    //for (int i = 0; i < parentTLP.ColumnCount * parentTLP.RowCount; i++)
-                    //{
-                        PictureBox pb = new PictureBox();
-                        pb.Click += Pb_Click;
-                        pb.Dock = DockStyle.Fill;
-                        pb.Margin = Padding.Empty;
-                        //pb.Text = i.ToString();
-                        parentTLP.Controls.Add(pb, c, r);
-                    //}
+                    PictureBox pb = new PictureBox();
+                    pb.Click += Pb_Click;
+                    pb.Dock = DockStyle.Fill;
+                    pb.Margin = Padding.Empty;
+                    parentTLP.Controls.Add(pb, c, r);
                 }
             }
         }
@@ -71,7 +67,7 @@ namespace HemIgenREDO
 
                 if (xIsOk && yIsOk)
                 {
-                    lastControl.BackColor = SystemColors.Control;
+                    lastControl.BackColor = SystemColors.Window;
                     playerPosX = controlPosX;
                     playerPosY = controlPosY;
                     selectedControl.BackColor = SystemColors.Highlight;
@@ -126,6 +122,44 @@ namespace HemIgenREDO
                 xIsOk = false;
                 yIsOk = false;
             }
+        }
+
+        public void SpecifyMap(TableLayoutPanel container, PictureBox initialControl)
+        {
+
+            lastControl = container.Controls[0];
+            PlayerPosX = container.GetCellPosition(lastControl).Column;
+            PlayerPosY = container.GetCellPosition(lastControl).Row;
+        }
+
+        public void Danger()
+        {
+            //if (player.Water != 0)
+            //    lblWater.Text = String.Format("Water: {0}", player.ThirstTaken());
+            //else
+            //    lblHealth.Text = String.Format("Health: {0}", player.DamageTaken());
+
+            //lblSteps.Text = String.Format("Steps: {0}", player.StepTaken());
+
+            //player.gameMap.MovePlayer(tlpMap, btnStepTest);
+
+            //if (player.Health == 0)
+            //{
+            //    tmrPlaytime.Stop();
+            //    this.Text = "GAME OVER";
+            //    lblDesc.Text = "GAME OVER";
+            //    btnStepTest.Enabled = false;
+            //    btnHealthTest.Enabled = false;
+            //    btnWaterTest.Enabled = false;
+            //}
+        }
+
+        public void Healer()
+        {
+            //if (player.Health < 100)
+            //    lblHealth.Text = String.Format("Health: {0}", player.Heal());
+
+            //player.gameMap.MovePlayer(tlpMap,btnHealthTest);
         }
     }
 }

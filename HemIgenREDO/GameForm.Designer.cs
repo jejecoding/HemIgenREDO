@@ -38,10 +38,8 @@
             this.panelMap = new System.Windows.Forms.Panel();
             this.tlpInventory = new System.Windows.Forms.TableLayoutPanel();
             this.tlpStats = new System.Windows.Forms.TableLayoutPanel();
-            this.lblStat5 = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
-            this.lblSteps = new System.Windows.Forms.Label();
-            this.lblWater = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
             this.lblHealth = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tmrPlaytime = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblSteps = new System.Windows.Forms.Label();
             this.panelMap.SuspendLayout();
             this.tlpStats.SuspendLayout();
             this.SuspendLayout();
@@ -172,15 +171,14 @@
             this.tlpStats.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
             this.tlpStats.ColumnCount = 1;
             this.tlpStats.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpStats.Controls.Add(this.lblStat5, 0, 4);
+            this.tlpStats.Controls.Add(this.lblSteps, 0, 1);
             this.tlpStats.Controls.Add(this.lblTime, 0, 3);
-            this.tlpStats.Controls.Add(this.lblSteps, 0, 2);
-            this.tlpStats.Controls.Add(this.lblWater, 0, 1);
             this.tlpStats.Controls.Add(this.lblHealth, 0, 0);
+            this.tlpStats.Controls.Add(this.lblLevel, 0, 2);
             this.tlpStats.Location = new System.Drawing.Point(368, 32);
             this.tlpStats.Margin = new System.Windows.Forms.Padding(0);
             this.tlpStats.Name = "tlpStats";
-            this.tlpStats.RowCount = 5;
+            this.tlpStats.RowCount = 4;
             this.tlpStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -189,51 +187,29 @@
             this.tlpStats.Size = new System.Drawing.Size(404, 149);
             this.tlpStats.TabIndex = 16;
             // 
-            // lblStat5
-            // 
-            this.lblStat5.AutoSize = true;
-            this.lblStat5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStat5.Location = new System.Drawing.Point(5, 118);
-            this.lblStat5.Name = "lblStat5";
-            this.lblStat5.Size = new System.Drawing.Size(394, 29);
-            this.lblStat5.TabIndex = 4;
-            this.lblStat5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTime.Location = new System.Drawing.Point(5, 89);
+            this.lblTime.Location = new System.Drawing.Point(5, 110);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(394, 27);
+            this.lblTime.Size = new System.Drawing.Size(394, 37);
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "Time";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.lblTime, "Playtime");
             // 
-            // lblSteps
+            // lblLevel
             // 
-            this.lblSteps.AutoSize = true;
-            this.lblSteps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSteps.Location = new System.Drawing.Point(5, 60);
-            this.lblSteps.Name = "lblSteps";
-            this.lblSteps.Size = new System.Drawing.Size(394, 27);
-            this.lblSteps.TabIndex = 2;
-            this.lblSteps.Text = "Steps";
-            this.lblSteps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTip1.SetToolTip(this.lblSteps, "Player Steps");
-            // 
-            // lblWater
-            // 
-            this.lblWater.AutoSize = true;
-            this.lblWater.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWater.Location = new System.Drawing.Point(5, 31);
-            this.lblWater.Name = "lblWater";
-            this.lblWater.Size = new System.Drawing.Size(394, 27);
-            this.lblWater.TabIndex = 1;
-            this.lblWater.Text = "Water";
-            this.lblWater.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTip1.SetToolTip(this.lblWater, "Player Water");
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLevel.Location = new System.Drawing.Point(5, 74);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(394, 34);
+            this.lblLevel.TabIndex = 1;
+            this.lblLevel.Text = "Level";
+            this.lblLevel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.lblLevel, "Game Level");
             // 
             // lblHealth
             // 
@@ -241,7 +217,7 @@
             this.lblHealth.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHealth.Location = new System.Drawing.Point(5, 2);
             this.lblHealth.Name = "lblHealth";
-            this.lblHealth.Size = new System.Drawing.Size(394, 27);
+            this.lblHealth.Size = new System.Drawing.Size(394, 34);
             this.lblHealth.TabIndex = 0;
             this.lblHealth.Text = "Health";
             this.lblHealth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -288,6 +264,18 @@
             this.tmrPlaytime.Interval = 1000;
             this.tmrPlaytime.Tick += new System.EventHandler(this.tmrPlaytime_Tick);
             // 
+            // lblSteps
+            // 
+            this.lblSteps.AutoSize = true;
+            this.lblSteps.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSteps.Location = new System.Drawing.Point(5, 38);
+            this.lblSteps.Name = "lblSteps";
+            this.lblSteps.Size = new System.Drawing.Size(394, 34);
+            this.lblSteps.TabIndex = 21;
+            this.lblSteps.Text = "Steps";
+            this.lblSteps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.lblSteps, "Player Steps");
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,10 +317,8 @@
         private System.Windows.Forms.Panel panelMap;
         private System.Windows.Forms.TableLayoutPanel tlpInventory;
         private System.Windows.Forms.TableLayoutPanel tlpStats;
-        private System.Windows.Forms.Label lblStat5;
         private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.Label lblSteps;
-        private System.Windows.Forms.Label lblWater;
+        private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Label lblHealth;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -340,5 +326,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer tmrPlaytime;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblSteps;
     }
 }

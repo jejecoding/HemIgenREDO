@@ -17,7 +17,7 @@ namespace HemIgenREDO
         EnumDifficulty difficulty;
         Player player = new Player();
 
-        //Control initialControl;
+        PictureBox initialPB;
 
         public GameForm(EnumDifficulty difficultyFromMenuForm)
         {
@@ -33,17 +33,15 @@ namespace HemIgenREDO
 
             tmrPlaytime.Start();
             lblHealth.Text = String.Format("Health: {0}", player.Health);
-            lblWater.Text = String.Format("Water: {0}", player.Water);
+            lblLevel.Text = String.Format("Level: {0}", player.Level);
             lblSteps.Text = String.Format("Steps: {0}", player.Steps);
             lblTime.Text = "Time played: 00:00";
             HideUnused();
 
             
-//tlpMap.Controls
-            //initialControl = tlpMap.Controls[0];
-            player.SpecifyMap(tlpMap, tlpMap.Controls[0]);
-            player.gameMap.LastControl = tlpMap.Controls[0];
-//            tlpMap.Controls[0].BackColor = SystemColors.Highlight;            
+            initialPB = (PictureBox)tlpMap.Controls[0]; //RandomIndex(tlpMap)
+            player.gameMap.SpecifyMap(tlpMap, initialPB);
+            player.gameMap.LastControl = initialPB;           
         }
 
         private void NewGame()
@@ -54,48 +52,37 @@ namespace HemIgenREDO
                     {
                         this.Text += " [Easy]";
                         player.Damage = 1;
-                        player.Thirst = 1;
                         player.Healing = 1;
-                        player.Hydration = 1;
-                        //initialControl = btnStepTest;
                         break;
                     }
                 case EnumDifficulty.Medium:
                     {
                         this.Text += " [Medium]";
                         player.Damage = 2;
-                        player.Thirst = 2;
                         player.Healing = 2;
-                        player.Hydration = 2;
-                        //initialControl = btnStepTest;
                         break;
                     }
                 case EnumDifficulty.Hard:
                     {
                         this.Text += " [Hard]";
                         player.Damage = 5;
-                        player.Thirst = 5;
                         player.Healing = 5;
-                        player.Hydration = 5;
-                       // initialControl = btnWaterTest;
                         break;
                     }
                 case EnumDifficulty.Hardcore:
                     {
                         this.Text += " [Hardcore!]";
                         player.Damage = 10;
-                        player.Thirst = 10;
                         player.Healing = 10;
-                        player.Hydration = 10;
-                       // initialControl = pbTestOne;
                         break;
                     }
             }
+            
             player.Health = 100;
-            player.Water = 100;
+            player.Level = 1;
             player.Steps = 0;
             player.gameMap.PlaceControls(tlpMap);
-            tlpMap.Controls[0].BackColor= SystemColors.Highlight;
+            tlpMap.Controls[0].BackColor = SystemColors.Highlight;
             
         }
 
@@ -107,7 +94,7 @@ namespace HemIgenREDO
 
         private void btnExitGame_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Äru säker?", "hallå", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("Är du säker på att du vill avsluta? Den nuvarande omgången går ej att återvända till.", "Avsluta Spelet", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 closeForm = true;
             }
@@ -115,32 +102,10 @@ namespace HemIgenREDO
 
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Äru säker?", "hallå", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("Är du säker på att du vill återgå till huvudmenyn? Den nuvarande omgången går ej att återvända till.", "Återgå till Huvudmeny", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 closeForm = true;
             }
-        }
-
-        private void btnStepTest_Click(object sender, EventArgs e)
-        {
-            //if (player.Water != 0)
-            //    lblWater.Text = String.Format("Water: {0}", player.ThirstTaken());
-            //else
-            //    lblHealth.Text = String.Format("Health: {0}", player.DamageTaken());
-
-            //lblSteps.Text = String.Format("Steps: {0}", player.StepTaken());
-
-            //player.gameMap.MovePlayer(tlpMap, btnStepTest);
-
-            //if (player.Health == 0)
-            //{
-            //    tmrPlaytime.Stop();
-            //    this.Text = "GAME OVER";
-            //    lblDesc.Text = "GAME OVER";
-            //    btnStepTest.Enabled = false;
-            //    btnHealthTest.Enabled = false;
-            //    btnWaterTest.Enabled = false;
-            //}
         }
 
         private void tmrPlaytime_Tick(object sender, EventArgs e)
@@ -153,23 +118,6 @@ namespace HemIgenREDO
             TimeSpan playTimeSpan = DateTime.Now - start;
             return String.Format("Time played: {0:mm\\:ss}",playTimeSpan);
         }
-
-        private void btnHealthTest_Click(object sender, EventArgs e)
-        {
-            //if (player.Health < 100)
-            //    lblHealth.Text = String.Format("Health: {0}", player.Heal());
-
-            //player.gameMap.MovePlayer(tlpMap,btnHealthTest);
-            
-        }
-
-        private void btnWaterTest_Click(object sender, EventArgs e)
-        {
-            //if (player.Water < 100)
-            //    lblWater.Text = String.Format("Water: {0}", player.Hydrate());
-            //player.gameMap.MovePlayer(tlpMap, btnWaterTest);
-        }
-
         private void HideUnused()
         {
             lblInventory.Hide();
@@ -186,6 +134,12 @@ namespace HemIgenREDO
         private void pbTestTwo_Click(object sender, EventArgs e)
         {
             //player.gameMap.MovePlayer(tlpMap, pbTestTwo);
+        }
+
+        private int RandomIndex(TableLayoutPanel parent)
+        {
+            Random r = new Random();
+            return r.Next(-1, parent.Controls.Count);
         }
     }
 }
