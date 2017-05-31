@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace HemIgenREDO
@@ -8,9 +10,15 @@ namespace HemIgenREDO
         int playerPosX, playerPosY;
         int controlPosX, controlPosY;
         bool yIsOk, xIsOk;
+        Player player;
 
         Control lastControl;
+        public List<PictureBox> dangers = new List<PictureBox>();
 
+        public Map()
+        {
+            //player = currentPlayer;
+        }
         public int PlayerPosX
         {
             get { return playerPosX; }
@@ -29,7 +37,7 @@ namespace HemIgenREDO
             set { lastControl = value; }
         }
 
-        public void PlaceControls(TableLayoutPanel parentTLP)
+        public void PlaceControls(TableLayoutPanel parentTLP, int level)
         {
             for (int r = 0; r < parentTLP.RowCount; r++)
             {
@@ -39,8 +47,15 @@ namespace HemIgenREDO
                     pb.Click += Pb_Click;
                     pb.Dock = DockStyle.Fill;
                     pb.Margin = Padding.Empty;
+                    pb.BackColor = Color.DarkGray;
                     parentTLP.Controls.Add(pb, c, r);
                 }
+            }
+            
+            Random rand = new Random();
+            for (int i = 0; i< (level + 3); i++)
+            {
+               dangers.Add((PictureBox)parentTLP.Controls[rand.Next(parentTLP.Controls.Count)]);
             }
         }
 
@@ -67,11 +82,31 @@ namespace HemIgenREDO
 
                 if (xIsOk && yIsOk)
                 {
-                    lastControl.BackColor = SystemColors.Window;
+                    foreach (PictureBox pb in dangers)
+                    {
+                        //if (parentTLP.Controls.IndexOf(lastControl) == parentTLP.Controls.IndexOf(pb))
+                        //{
+                        //    lastControl.BackColor = Color.Red;
+                        //}
+                        //else
+                        //{
+                        //    lastControl.BackColor = SystemColors.Control;
+                        //}
+
+                        if (parentTLP.Controls.IndexOf(selectedControl) == parentTLP.Controls.IndexOf(pb))
+                        {
+                            //damage player
+                            MessageBox.Show("You got damaged");
+                            
+                        }
+                    }
+                    lastControl.BackColor = SystemColors.Control;
                     playerPosX = controlPosX;
                     playerPosY = controlPosY;
                     selectedControl.BackColor = SystemColors.Highlight;
                     lastControl = selectedControl;
+
+                    
                 }
                 else
                 {
