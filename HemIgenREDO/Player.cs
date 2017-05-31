@@ -14,10 +14,13 @@ namespace HemIgenREDO
         int steps;
         int level;
         int damage;
-        int thirst;
         int healing;
         EnumDifficulty difficulty;
 
+        public Player()
+        {
+
+        }
 
         public Map gameMap = new Map();
 

@@ -17,6 +17,7 @@ namespace HemIgenREDO
         EnumDifficulty difficulty;
         Player player = new Player();
 
+        int initialIndex;
         PictureBox initialPB;
 
         public GameForm(EnumDifficulty difficultyFromMenuForm)
@@ -38,8 +39,7 @@ namespace HemIgenREDO
             lblTime.Text = "Time played: 00:00";
             HideUnused();
 
-            
-            initialPB = (PictureBox)tlpMap.Controls[0]; //RandomIndex(tlpMap)
+            PlacePlayer();
             player.gameMap.SpecifyMap(tlpMap, initialPB);
             player.gameMap.LastControl = initialPB;           
         }
@@ -77,13 +77,11 @@ namespace HemIgenREDO
                         break;
                     }
             }
-            
+            player.Difficulty = difficulty;
             player.Health = 100;
-            player.Level = 1;
+            player.Level = 0;
             player.Steps = 0;
-            player.gameMap.PlaceControls(tlpMap);
-            tlpMap.Controls[0].BackColor = SystemColors.Highlight;
-            
+            player.gameMap.PlaceControls(tlpMap, player.LevelUp());            
         }
 
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -126,20 +124,29 @@ namespace HemIgenREDO
             btnMagnifier.Hide();
         }
 
-        private void pbTestOne_Click(object sender, EventArgs e)
+        private void PlacePlayer()
         {
-            //player.gameMap.MovePlayer(tlpMap, pbTestOne);
-        }
-
-        private void pbTestTwo_Click(object sender, EventArgs e)
-        {
-            //player.gameMap.MovePlayer(tlpMap, pbTestTwo);
+            bool placeOk;
+            do
+            {
+                placeOk = true;
+                initialIndex = RandomIndex(tlpMap);
+                initialPB = (PictureBox)tlpMap.Controls[0];
+                foreach (PictureBox pb in player.gameMap.dangers)
+                {
+                    if (tlpMap.Controls.IndexOf(initialPB) == tlpMap.Controls.IndexOf(pb))
+                    {
+                        placeOk = false;
+                    }
+                }
+            } while (!placeOk);
+            tlpMap.Controls[0].BackColor = SystemColors.Highlight;
         }
 
         private int RandomIndex(TableLayoutPanel parent)
         {
             Random r = new Random();
-            return r.Next(-1, parent.Controls.Count);
+            return r.Next(0, parent.Controls.Count);
         }
     }
 }
