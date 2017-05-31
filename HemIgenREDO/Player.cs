@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace HemIgenREDO
 {
     public class Player
     {
         string name;
+
         int health;
         int steps;
-        int water;
+        int level;
         int damage;
         int thirst;
         int healing;
-        int hydration;
+        EnumDifficulty difficulty;
+
+
+        public Map gameMap = new Map();
 
         public string Name
         {
@@ -33,16 +38,16 @@ namespace HemIgenREDO
             get { return steps; }
         }
 
-        public int Water
+        public int Level
         {
-            set { water = value; }
-            get { return water; }
+            set { level = value; }
+            get { return level; }
         }
 
-        public int Thirst
+        public EnumDifficulty Difficulty
         {
-            set { thirst = value; }
-            get { return thirst; }
+            set { difficulty = value; }
+            get { return difficulty; }
         }
 
         public int Damage
@@ -57,28 +62,15 @@ namespace HemIgenREDO
             get { return healing; }
         }
 
-        public int Hydration
-        {
-            set { hydration = value; }
-            get { return hydration; }
-        }
-
         public int DamageTaken()
         {
             health = health - Damage;
             return health;
         }
 
-        public int ThirstTaken()
+        public int LevelUp()
         {
-            water = water - Thirst;
-            return water;
-        }
-
-        public int Hydrate()
-        {
-            water = water + hydration;
-            return water;
+            return ++level;
         }
 
         public int Heal()

@@ -1,0 +1,6 @@
+﻿1) Metod för att automatiskt skapa hela kartan; alt stoppa in pb i alla rutor i kartan
+2) Skapa olika biomes
+3) Slumpa ut biomes i rutnätet
+4) Skriva text från biome till description
+5) Ge funktion till inventory system + knappar
+6) "Spara omgång"-system
